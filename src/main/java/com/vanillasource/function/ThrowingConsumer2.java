@@ -19,7 +19,7 @@
 package com.vanillasource.function;
 
 @FunctionalInterface
-public interface ThrowingConsumer<T, E extends Exception> {
-   void accept(T t) throws E;
+public interface ThrowingConsumer2<T, E1 extends Exception, E2 extends Exception> {
+   void accept(T t) throws E1, E2;
 }
 

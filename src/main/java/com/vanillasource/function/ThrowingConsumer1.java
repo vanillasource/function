@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2016 VanillaSource
+ * Copyright (C) 2015 VanillaSource
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,11 +18,8 @@
 
 package com.vanillasource.function;
 
-/**
- * Use this type to define an exception type which signifies that no exception
- * can actually occur. This is similar to <code>void</code>, only for exceptions.
- */
-public class NoException extends RuntimeException {
-   private NoException() {
-   }
+@FunctionalInterface
+public interface ThrowingConsumer1<T, E1 extends Exception> {
+   void accept(T t) throws E1;
 }
+
