@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 VanillaSource
+ * Copyright (C) 2016 VanillaSource
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,24 +16,17 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-package com.vanillasource.function;
+package com.vanillasource.io;
 
-/**
- * A code block which takes three parameters, and returns primitive void.
- */
-@FunctionalInterface
-public interface VoidBlock3<P1, P2, P3, E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception> {
-   void run(P1 p1, P2 p2, P3 p3) throws E1, E2, E3, E4, E5;
+import org.testng.annotations.*;
+import static org.testng.Assert.*;
+import static org.mockito.Mockito.*;
+import java.io.IOException;
 
-   default Block3<P1, P2, P3, Void, E1, E2, E3, E4, E5> toBlock3() {
-      return new Block3<P1, P2, P3, Void, E1, E2, E3, E4, E5>() {
-         @Override
-         public Void run(P1 p1, P2 p2, P3 p3) throws E1, E2, E3, E4, E5 {
-            VoidBlock3.this.run(p1, p2, p3);
-            return null;
-         }
-      };
+@Test
+public class ResourceTests {
+   public void testCloseableResourceSyntax() throws Exception {
+      Resources.closeableResource(() -> mock(AutoCloseable.class)).use(r -> r != null);
    }
 }
-
 

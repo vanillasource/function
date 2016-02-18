@@ -24,6 +24,16 @@ package com.vanillasource.function;
 @FunctionalInterface
 public interface VoidBlock1<P1, E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception> {
    void run(P1 p1) throws E1, E2, E3, E4, E5;
+
+   default Block1<P1, Void, E1, E2, E3, E4, E5> toBlock1() {
+      return new Block1<P1, Void, E1, E2, E3, E4, E5>() {
+         @Override
+         public Void run(P1 p1) throws E1, E2, E3, E4, E5 {
+            VoidBlock1.this.run(p1);
+            return null;
+         }
+      };
+   }
 }
 
 
