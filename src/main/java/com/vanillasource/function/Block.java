@@ -18,8 +18,12 @@
 
 package com.vanillasource.function;
 
+/**
+ * A code block which takes no parameters, but might return a value.
+ */
 @FunctionalInterface
-public interface ThrowingConsumer4<T, E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception> {
-   void accept(T t) throws E1, E2, E3, E4;
+public interface Block<R, E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception> {
+   R run() throws E1, E2, E3, E4, E5;
 }
+
 

@@ -18,8 +18,12 @@
 
 package com.vanillasource.function;
 
+/**
+ * A code block which takes no parameters, and returns primitive void.
+ */
 @FunctionalInterface
-public interface ThrowingConsumer2<T, E1 extends Exception, E2 extends Exception> {
-   void accept(T t) throws E1, E2;
+public interface VoidBlock<E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception> {
+   void run() throws E1, E2, E3, E4, E5;
 }
+
 
