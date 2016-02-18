@@ -29,6 +29,10 @@ public class BlockTests {
       take(() -> "Return");
    }
 
+   public void testVoidBlockCanBeUsedDirectlyWithoutExceptions() {
+      take(() -> {});
+   }
+
    public void testBlockReturnsValue() {
       assertEquals(take(() -> "Return"), "Return");
    }
@@ -39,7 +43,6 @@ public class BlockTests {
          if (1==1) {
             throw new ClassNotFoundException("test");
          }
-         return "Return";
       });
    }
 
@@ -93,6 +96,21 @@ public class BlockTests {
       take(this::makeStringValueWithException);
    }
 
+   @Test(expectedExceptions = ClassNotFoundException.class)
+   public void testVoidBlockWithTwoParametersAndAnException() throws ClassNotFoundException {
+      take((s, i) -> {
+         throw new ClassNotFoundException("test");
+      });
+   }
+
+   public void testVoidBlockWithTwoParametersAndTwoExceptions() throws ClassNotFoundException, IOException {
+      take(rethrow(ClassNotFoundException.class).rethrow(IOException.class).block((s, i) -> {
+         if (1==2) {
+            throw new ClassNotFoundException("test");
+         }
+      }));
+   }
+
    private String makeStringValueWithoutException() {
       return "Value";
    }
@@ -104,6 +122,16 @@ public class BlockTests {
    private <R, E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception>
          R take(Block<R, E1, E2, E3, E4, E5> block) throws E1, E2, E3, E4, E5 {
       return block.run();
+   }
+
+   private <E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception>
+         void take(VoidBlock<E1, E2, E3, E4, E5> block) throws E1, E2, E3, E4, E5 {
+      block.run();
+   }
+
+   private <E1 extends Exception, E2 extends Exception, E3 extends Exception, E4 extends Exception, E5 extends Exception>
+         void take(VoidBlock2<String, Integer, E1, E2, E3, E4, E5> block) throws E1, E2, E3, E4, E5 {
+      block.run("Param1", 2);
    }
 }
 

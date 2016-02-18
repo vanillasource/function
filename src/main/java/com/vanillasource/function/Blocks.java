@@ -26,26 +26,38 @@ public class Blocks {
    private Blocks() {
    }
 
-   /**
-    * Identity factory for convenience.
-    */
    public static <R> Block<R, VoidException, VoidException, VoidException, VoidException, VoidException> block(Block<R, VoidException, VoidException, VoidException, VoidException, VoidException> block) {
       return block;
    }
 
-   /**
-    * Read a void block and convert it to a proper block that returns (Void) null.
-    */
-   public static Block<Void, VoidException, VoidException, VoidException, VoidException, VoidException> block(VoidBlock<VoidException, VoidException, VoidException, VoidException, VoidException> voidBlock) {
-      return () -> {
-         voidBlock.run();
-         return null;
-      };
+   public static VoidBlock<VoidException, VoidException, VoidException, VoidException, VoidException> block(VoidBlock<VoidException, VoidException, VoidException, VoidException, VoidException> voidBlock) {
+      return voidBlock;
    }
 
-   /**
-    * Start a block builder that fixes the first exception to some given type.
-    */
+   public static <P1, R> Block1<P1, R, VoidException, VoidException, VoidException, VoidException, VoidException> block(Block1<P1, R, VoidException, VoidException, VoidException, VoidException, VoidException> block) {
+      return block;
+   }
+
+   public static <P1> VoidBlock1<P1, VoidException, VoidException, VoidException, VoidException, VoidException> block(VoidBlock1<P1, VoidException, VoidException, VoidException, VoidException, VoidException> voidBlock) {
+      return voidBlock;
+   }
+
+   public static <P1, P2, R> Block2<P1, P2, R, VoidException, VoidException, VoidException, VoidException, VoidException> block(Block2<P1, P2, R, VoidException, VoidException, VoidException, VoidException, VoidException> block) {
+      return block;
+   }
+
+   public static <P1, P2> VoidBlock2<P1, P2, VoidException, VoidException, VoidException, VoidException, VoidException> block(VoidBlock2<P1, P2, VoidException, VoidException, VoidException, VoidException, VoidException> voidBlock) {
+      return voidBlock;
+   }
+
+   public static <P1, P2, P3, R> Block3<P1, P2, P3, R, VoidException, VoidException, VoidException, VoidException, VoidException> block(Block3<P1, P2, P3, R, VoidException, VoidException, VoidException, VoidException, VoidException> block) {
+      return block;
+   }
+
+   public static <P1, P2, P3> VoidBlock3<P1, P2, P3, VoidException, VoidException, VoidException, VoidException, VoidException> block(VoidBlock3<P1, P2, P3, VoidException, VoidException, VoidException, VoidException, VoidException> voidBlock) {
+      return voidBlock;
+   }
+
    public static <E1 extends Exception> BlockBuilderContinue1<E1, VoidException, VoidException, VoidException, VoidException> rethrow(Class<E1> e1Class) {
       return new BlockBuilderContinue1<>();
    }
@@ -55,11 +67,32 @@ public class Blocks {
          return block;
       }
 
-      public Block<Void, E1, E2, E3, E4, E5> block(VoidBlock<E1, E2, E3, E4, E5> voidBlock) {
-         return () -> {
-            voidBlock.run();
-            return null;
-         };
+      public VoidBlock<E1, E2, E3, E4, E5> block(VoidBlock<E1, E2, E3, E4, E5> voidBlock) {
+         return voidBlock;
+      }
+
+      public <P1, R> Block1<P1, R, E1, E2, E3, E4, E5> block(Block1<P1, R, E1, E2, E3, E4, E5> block) {
+         return block;
+      }
+
+      public <P1> VoidBlock1<P1, E1, E2, E3, E4, E5> block(VoidBlock1<P1, E1, E2, E3, E4, E5> voidBlock) {
+         return voidBlock;
+      }
+
+      public <P1, P2, R> Block2<P1, P2, R, E1, E2, E3, E4, E5> block(Block2<P1, P2, R, E1, E2, E3, E4, E5> block) {
+         return block;
+      }
+
+      public <P1, P2> VoidBlock2<P1, P2, E1, E2, E3, E4, E5> block(VoidBlock2<P1, P2, E1, E2, E3, E4, E5> voidBlock) {
+         return voidBlock;
+      }
+
+      public <P1, P2, P3, R> Block3<P1, P2, P3, R, E1, E2, E3, E4, E5> block(Block3<P1, P2, P3, R, E1, E2, E3, E4, E5> block) {
+         return block;
+      }
+
+      public <P1, P2, P3> VoidBlock3<P1, P2, P3, E1, E2, E3, E4, E5> block(VoidBlock3<P1, P2, P3, E1, E2, E3, E4, E5> voidBlock) {
+         return voidBlock;
       }
    }
 
